@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import signUpImg from '../assets/images/login.png'; 
+import signUpImg from '../assets/images/login.png';
 import { Link } from 'react-router-dom';
 
 const SignUpForm = () => {
@@ -55,8 +55,29 @@ const SignUpForm = () => {
       console.log('Username:', username);
       console.log('Mobile Number:', mobileNumber);
       console.log('Password:', password);
-      // Add your logic to handle form submission (API call, etc.)
+
+      const data = {
+        username,
+        mobile_number: mobileNumber,
+        password,
+      };
+
+      fetch("http://localhost:8000/api/registration/signup/verification", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Response from Django:", data);
+        })
+        .catch((err) => {
+          console.error("Error:", err);
+        });
     }
+
   };
 
   return (

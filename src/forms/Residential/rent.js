@@ -112,7 +112,6 @@ const ResidentialRentForm = () => {
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length) {
-            alert("Please correct the highlighted errors.");
             return;
         }
 
